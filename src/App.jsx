@@ -9,16 +9,22 @@ export default function App() {
   const [hiredPeople, setHiredPeople] = useState([]);
   
 
-  useEffect(() => {
-    const getPeople = async () => {
-      const data = await fetch ('https://randomuser.me/api/?results=50')
-      const json = await data.json()
-      setPeople(json.results)
-    }
-   getPeople()
-  }, [])
+  // useEffect(() => {
+  //   const getPeople = async () => {
+  //     const data = await fetch ('https://randomuser.me/api/?results=50')
+  //     const json = await data.json()
+  //     setPeople(json.results)
+  //   }
+  //  getPeople()
+  // }, [])
 
- 
+  useEffect(() => {
+    fetch('https://randomuser.me/api/?results=50')
+      .then(response => response.json())
+      .then(data => {
+        setPeople(data.results)
+      })
+  },[])
 
   return (
     <>
